@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemuel's Web Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;400&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #1d1f22;
+            color: #e5e5e5;
+        }
+
+        header {
+            background: url('IMG_20241119_205131_685.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 60px 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        header p {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background: linear-gradient(135deg, #111, #333);
+            padding-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            margin: 0;
+        }
+
+        nav li {
+            margin: 25px 0;
+            width: 100%;
+        }
+
+        nav a {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #ff4b5c, #ff6f61);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(255, 75, 92, 0.5);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 80px 40px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff4b5c;
+            margin-bottom: 20px;
+        }
+
+        .biodata-card {
+            display: flex;
+            align-items: center;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 50px;
+        }
+
+        .biodata-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .biodata-card div {
+            color: #e5e5e5;
+        }
+
+        .biodata-card div h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #ff4b5c;
+        }
+
+        .biodata-card div p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .project-card {
+            background: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            color: #ff4b5c;
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #b3b3b3;
+            margin-bottom: 20px;
+        }
+
+        .program-content {
+            margin-top: 20px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+
+        .program-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+        }
+
+        .program-content label {
+            color: #e5e5e5;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .program-content input {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #555;
+            background-color: #444;
+            color: white;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .program-content button {
+            background: linear-gradient(135deg, #ff4b5c, #ff6f61);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program-content button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(255, 75, 92, 0.3);
+        }
+
+        .program-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #444;
+            border-radius: 6px;
+            color: #4ade80;
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        #patternResult {
+            font-family: monospace;
+            white-space: pre;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-top: 2px solid #ff4b5c;
+            margin-left: 250px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #ff4b5c;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .project-card {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Nemuel's Web Portfolio</h1>
+            <p>Bringing Ideas to Life with Creativity and Code</p>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="biodata-card">
+                <img src="IMG_20241119_205131_685.jpg" alt="Nemuel's Profile Picture">
+                <div>
+                    <h3>Nemuel M. Wenceslao</h3>
+                    <p>Height: 5'2"</p>
+                    <p>Age: 19</p>
+                    <p>Contact: 09703579139</p>
+                    <p>Address: Brgy. San Pablo, Ormoc City, Leyte</p>
+                    <p>I am a driven individual who enjoys exploring the world of coding and technology. With a passion for problem-solving and creating meaningful projects, I aim to turn ideas into functional and engaging solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs">
+            <h2>Interactive Programs</h2>
+
+            <!-- Triangle Area Calculator -->
+            <div class="project-card">
+                <h3>1. Triangle Area Calculator</h3>
+                <div class="program-content">
+                    <form id="triangleForm">
+                        <label for="base">Base:</label>
+                        <input type="number" id="base" required>
+                        <label for="height">Height:</label>
+                        <input type="number" id="height" required>
+                        <button type="submit">Calculate Area</button>
+                    </form>
+                    <div id="triangleResult" class="program-result"></div>
+                </div>
+            </div>
+
+            <!-- Average Calculator -->
+            <div class="project-card">
+                <h3>2. Average Calculator</h3>
+                <div class="program-content">
+                    <form id="averageForm">
+                        <label for="numbers">Enter numbers (comma-separated):</label>
+                        <input type="text" id="numbers" placeholder="e.g., 1,2,3,4,5" required>
+                        <button type="submit">Calculate Average</button>
+                    </form>
+                    <div id="averageResult" class="program-result"></div>
+                </div>
+            </div>
+
+            <!-- Temperature Converter -->
+            <div class="project-card">
+                <h3>3. Temperature Converter</h3>
+                <div class="program-content">
+                    <form id="temperatureForm">
+                        <label for="celsius">Temperature in Celsius:</label>
+                        <input type="number" id="celsius" required>
+                        <button type="submit">Convert to Fahrenheit</button>
+                    </form>
+                    <div id="temperatureResult" class="program-result"></div>
+                </div>
+            </div>
+
+            <!-- Star Pattern Generator -->
+            <div class="project-card">
+                <h3>4. Star Pattern Generator</h3>
+                <div class="program-content">
+                    <form id="patternForm">
+                        <label for="rows">Number of rows:</label>
+                        <input type="number" id="rows" min="1" max="20" required>
+                        <button type="submit">Generate Pattern</button>
+                    </form>
+                    <pre id="patternResult" class="program-result"></pre>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Nemuel M. Wenceslao | All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Triangle Area Calculator
+        document.getElementById('triangleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const base = parseFloat(document.getElementById('base').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const area = (0.5 * base * height).toFixed(2);
+            const result = document.getElementById('triangleResult');
+            result.textContent = `The area of the triangle is ${area} square units.`;
+            result.style.display = 'block';
+        });
+
+        // Average Calculator
+        document.getElementById('averageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const numbers = document.getElementById('numbers').value.split(',').map(Number);
+            const average = (numbers.reduce((a, b) => a + b, 0) / numbers.length).toFixed(2);
+            const result = document.getElementById('averageResult');
+            result.textContent = `The average is ${average}.`;
+            result.style.display = 'block';
+        });
+
+        // Temperature Converter
+        document.getElementById('temperatureForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const celsius = parseFloat(document.getElementById('celsius').value);
+            const fahrenheit = ((celsius * 9/5) + 32).toFixed(2);
+            const result = document.getElementById('temperatureResult');
+            result.textContent = `${celsius}°C is equal to ${fahrenheit}°F.`;
+            result.style.display = 'block';
+        });
+
+        // Star Pattern Generator
+        document.getElementById('patternForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const rows = parseInt(document.getElementById('rows').value);
+            let pattern = '';
+            for (let i = 1; i <= rows; i++) {
+                pattern += '*'.repeat(i) + '\n';
+            }
+            const result = document.getElementById('patternResult');
+            result.textContent = pattern;
+            result.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
